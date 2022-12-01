@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SchoolSoft.Data;
 using SchoolSoft.Models;
+using SchoolSoft.Repositories.Implementations;
+using SchoolSoft.Repositories.Interfaces;
+using SchoolSoft.Services.Implementations;
+using SchoolSoft.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,10 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = false)
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
+
+
+    builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+    builder.Services.AddScoped<IFacultyService, FacultyService>();
 }
 
 var app = builder.Build();

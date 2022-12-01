@@ -1,32 +1,49 @@
-﻿using SchoolSoft.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using SchoolSoft.Repositories.Interfaces;
+using SchoolSoft.Data;
+using System.Linq.Expressions;
+using SchoolSoft.Models;
 
 namespace SchoolSoft.Repositories.Implementations
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        public Task Create(T t)
+        public ApplicationDbContext _context;
+        private readonly DbSet<T> entities;
+
+        public GenericRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+            entities = context.Set<T>();
+        }
+        virtual public async Task Create(T t)
+        {
+            await entities.AddAsync(t);
         }
 
-        public Task Delete(int id)
+        virtual public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = await entities.FindAsync(id);
+            if (entity != null)
+            {
+                entities.Remove(entity);
+            }
         }
 
-        public void Edit(T t)
+        virtual public void Edit(T t)
         {
-            throw new NotImplementedException();
+            entities.Update(t);
         }
 
-        public Task<List<T>> GetAll()
+        virtual public async Task<List<T>> GetAll()
         {
-            throw new NotImplementedException();
+            return await entities.ToListAsync();
         }
+
+        virtual public async Task<T?> GetBy(Expression<Func<T, bool>> predicate)
+        {
+            return await entities.FirstOrDefaultAsync(predicate);
+        }
+
     }
 }

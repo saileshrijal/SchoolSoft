@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
+
 
 namespace SchoolSoft.Repositories.Interfaces
 {
@@ -10,7 +7,8 @@ namespace SchoolSoft.Repositories.Interfaces
     {
         Task<List<T>> GetAll();
         Task Create(T t);
-        Task Delete(int id);
+        public Task Delete(int id);
         void Edit(T t);
+        public Task<T?> GetBy(Expression<Func<T, bool>> predicate);
     }
 }

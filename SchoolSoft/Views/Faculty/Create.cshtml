@@ -1,0 +1,22 @@
+﻿@model FacultyViewModel
+@{
+    ViewData["Title"] = "Create Faculty";
+}
+
+<h2>Create Faculty</h2>
+<hr />
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="name"></label>
+        <textarea asp-for="name" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="description"></label>
+        <input asp-for="description" class="form-control" />
+        <span asp-validation-for="description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <input type="submit" class="form-control btn btn-primary" value="Create" />
+    </div>
+</form>
