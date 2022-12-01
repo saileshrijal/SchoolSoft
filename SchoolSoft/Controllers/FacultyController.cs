@@ -42,9 +42,7 @@ namespace SchoolSoft.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(FacultyViewModel vm)
         {
-            var facultyVM = await _facultyService.GetFaculty(vm.id);
-            facultyVM.name = vm.name;
-            await _facultyService.UpdateFaculty(facultyVM);
+            await _facultyService.UpdateFaculty(vm);
             return RedirectToAction(nameof(Index));
         }
 

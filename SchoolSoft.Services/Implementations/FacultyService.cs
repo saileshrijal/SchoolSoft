@@ -25,6 +25,9 @@ namespace SchoolSoft.Services.Implementations
         public async Task UpdateFaculty(FacultyViewModel vm)
         {
             var facultyModel = new FacultyViewModel().ConvertViewModel(vm);
+            var existingFaculty = await _unitOfWork.Faculty.GetBy(x=>x.id==facultyModel.id);
+            existingFaculty.name = vm.name;
+            existingFaculty.description = vm.description;
             await _unitOfWork.SaveAsync();
         }
 
