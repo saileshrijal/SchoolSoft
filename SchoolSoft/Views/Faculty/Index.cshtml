@@ -1,0 +1,50 @@
+﻿@model List<FacultyViewModel>
+
+@{
+    ViewData["Title"] = "List of Faculty";
+}
+<a asp-action="Create" class="btn btn-success">Add Faculty</a>
+<h2>List of Faculty</h2>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Faculty Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.id
+                    </td>
+                    <td>
+                        @item.name
+                    </td>
+                    <td>
+                        @item.description
+                    </td>
+                    <td>
+                        <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.id">Edit</a>
+                        @*Creating form to execute HTTPPOST Request*@
+                        <form asp-action="Delete" asp-route-id="@item.id" class="d-inline">
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
