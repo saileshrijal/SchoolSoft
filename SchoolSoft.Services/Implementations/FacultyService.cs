@@ -47,8 +47,12 @@ namespace SchoolSoft.Services.Implementations
 
         public async Task<FacultyViewModel> GetFaculty(int id)
         {
+            var facultyVM = new FacultyViewModel();//create null object
             var facultyModel = await _unitOfWork.Faculty.GetBy(x => x.id == id);
-            var facultyVM = new FacultyViewModel(facultyModel);
+            if(facultyModel != null)
+            {
+                facultyVM = new FacultyViewModel(facultyModel);
+            }
             return facultyVM;
         }
 

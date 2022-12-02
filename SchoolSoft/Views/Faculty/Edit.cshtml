@@ -11,6 +11,7 @@
     <div class="mb-3">
         <label for="" class="form-label">Faculty Name</label>
         <input type="text" class="form-control" asp-for="name">
+        <span asp-validation-for="name" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label asp-for="description"></label>
@@ -21,3 +22,7 @@
         <input type="submit" class="form-control btn btn-primary" value="Edit" />
     </div>
 </form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
