@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace SchoolSoft.Models
 {
-    public class Faculty
+    public class Program
     {
-        public int Id { get; set; } 
+        public int Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
-        public List<Program>? Programs { get; set; }
+        public int FacultyId { get; set; }
+        public Faculty? Faculty { get; set; }
     }
 }

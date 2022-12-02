@@ -19,16 +19,16 @@ namespace SchoolSoft.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var listOfFacultiesVM = new List<FacultyViewModel>();
+            var facultiesVM = new List<FacultyViewModel>();
             try
             {
-                listOfFacultiesVM = await _facultyService.GetAllFaculties();
+                facultiesVM = await _facultyService.GetAllFaculties();
             }
             catch (Exception ex)
             {
                 _notifyService.Error(ex.Message);
             }
-            return View(listOfFacultiesVM);
+            return View(facultiesVM);
         }
 
         public IActionResult Create()
@@ -60,7 +60,7 @@ namespace SchoolSoft.Controllers
             try
             {
                 facultyVM = await _facultyService.GetFaculty(id);
-                if (facultyVM.id == 0)
+                if (facultyVM.Id == 0)
                 {
                     _notifyService.Error($"Faculty of ID: {id} not found");
                     return RedirectToAction(nameof(Index));

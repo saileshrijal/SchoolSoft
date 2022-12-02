@@ -9,6 +9,7 @@ namespace SchoolSoft.Repositories.Interfaces
     public interface IUnitOfWork
     {
         IFacultyRepository Faculty { get; }
+        IProgramRepository Program { get; }
 
         Task SaveAsync();
     }

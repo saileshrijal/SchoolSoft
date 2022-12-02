@@ -9,5 +9,6 @@ namespace SchoolSoft.Data
         public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Faculty>? Faculties { get; set; }
+        public DbSet<Program>? Programs { get; set; }
     }
 }

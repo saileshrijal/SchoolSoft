@@ -26,8 +26,8 @@ namespace SchoolSoft.Services.Implementations
         {
             var facultyModel = new FacultyViewModel().ConvertViewModel(vm);
             var existingFaculty = await _unitOfWork.Faculty.GetBy(x=>x.Id==facultyModel.Id);
-            existingFaculty.Name = vm.name;
-            existingFaculty.Description = vm.description;
+            existingFaculty.Name = vm.Name;
+            existingFaculty.Description = vm.Description;
             await _unitOfWork.SaveAsync();
         }
 
@@ -35,8 +35,8 @@ namespace SchoolSoft.Services.Implementations
         public async Task<List<FacultyViewModel>> GetAllFaculties()
         {
             var facultiesModel = await _unitOfWork.Faculty.GetAll();
-            var facultiesViewModel = ConvertModelListToViewModelList(facultiesModel);
-            return facultiesViewModel;
+            var facultiesVM = ConvertModelListToViewModelList(facultiesModel);
+            return facultiesVM;
         }
 
         public async Task DeleteFaculty(int id)

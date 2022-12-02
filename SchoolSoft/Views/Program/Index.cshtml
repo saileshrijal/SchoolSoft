@@ -1,7 +1,7 @@
-﻿@model List<FacultyViewModel>
+﻿@model List<ProgramViewModel>
 
 @{
-    ViewData["Title"] = "List of Faculty";
+    ViewData["Title"] = "List of Programs";
 }
 <div class="container">
     <div class="row mb-4">
@@ -9,7 +9,7 @@
             <h2>List of Faculties</h2>
         </div>
         <div class="col-6 text-end">
-            <a asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle-fill"></i> Add Faculty</a>
+            <a asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle-fill"></i> Add Program</a>
         </div>
     </div>
     <div>
@@ -17,10 +17,13 @@
             <thead>
                 <tr>
                     <th>
-                        Faculty Name
+                        Program Name
                     </th>
                     <th>
                         Description
+                    </th>
+                    <th>
+                        Faculty
                     </th>
                     <th>
                         Action
@@ -36,6 +39,9 @@
                         </td>
                         <td>
                             @item.Description
+                        </td>
+                        <td>
+                            @item.Faculty.Name
                         </td>
                         <td>
                             <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit <i class="bi bi-pencil"></i></a>

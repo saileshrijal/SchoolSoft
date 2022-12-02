@@ -1,13 +1,20 @@
-﻿@model FacultyViewModel
+﻿@model ProgramViewModel
 
 @{
-    ViewData["Title"] = "Edit Faculty";
+    ViewData["Title"] = "Edit Program";
 }
 
 <h2>Edit Faculty</h2>
-<hr></hr>
+<hr>
 <form method="post" action="Edit">
     <input type="hidden" asp-for="Id" />
+     <div class="mb-3">
+        <label>Faculty</label>
+        <select asp-for="FacultyId" class="form-control" asp-items="@Model.Faculties" >
+            <option value="">Select Faculty</option>
+        </select>
+        <span asp-validation-for="FacultyId" class="text-danger"></span>
+    </div>
     <div class="mb-3">
         <label for="" class="form-label">Faculty Name</label>
         <input type="text" class="form-control" asp-for="Name">

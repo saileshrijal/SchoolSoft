@@ -24,6 +24,7 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
     builder.Services.AddScoped<IFacultyService, FacultyService>();
+    builder.Services.AddScoped<IProgramService, ProgramService>();
 }
 
 var app = builder.Build();

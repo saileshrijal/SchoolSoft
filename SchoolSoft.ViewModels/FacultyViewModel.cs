@@ -6,11 +6,11 @@ namespace SchoolSoft.ViewModels
 {
     public class FacultyViewModel
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        public string? name { get; set; }
-        public string? description { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
 
         public FacultyViewModel()
         {
@@ -18,18 +18,18 @@ namespace SchoolSoft.ViewModels
 
         public FacultyViewModel(Faculty model) // model to vm
         {
-            id = model.Id;
-            name = model.Name;
-            description = model.Description;
+            Id = model.Id;
+            Name = model.Name;
+            Description = model.Description;
         }
 
         public Faculty ConvertViewModel(FacultyViewModel vm)
         {
             return new Faculty
             {
-                Id = vm.id,
-                Name = vm.name,
-                Description = vm.description
+                Id = vm.Id,
+                Name = vm.Name,
+                Description = vm.Description
             };
         }
 

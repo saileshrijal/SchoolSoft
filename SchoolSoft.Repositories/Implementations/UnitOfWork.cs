@@ -11,12 +11,14 @@ namespace SchoolSoft.Repositories.Implementations
     public class UnitOfWork : IUnitOfWork
     {
         public IFacultyRepository Faculty { get; private set; }
+        public IProgramRepository Program { get; private set; }
         private readonly ApplicationDbContext _context;
 
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
             Faculty = new FacultyRepository(context);
+            Program = new ProgramRepository(context);
         }
 
         public async Task SaveAsync()
