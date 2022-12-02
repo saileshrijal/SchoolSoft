@@ -18,18 +18,18 @@ namespace SchoolSoft.ViewModels
 
         public FacultyViewModel(Faculty model) // model to vm
         {
-            id = model.id;
-            name = model.name;
-            description = model.description;
+            id = model.Id;
+            name = model.Name;
+            description = model.Description;
         }
 
-        public Faculty ConvertViewModel(FacultyViewModel model)
+        public Faculty ConvertViewModel(FacultyViewModel vm)
         {
             return new Faculty
             {
-                id = model.id,
-                name = model.name,
-                description = model.description
+                Id = vm.id,
+                Name = vm.name,
+                Description = vm.description
             };
         }
 

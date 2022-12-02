@@ -17,9 +17,6 @@
             <thead>
                 <tr>
                     <th>
-                        Id
-                    </th>
-                    <th>
                         Faculty Name
                     </th>
                     <th>
@@ -35,19 +32,16 @@
                 {
                     <tr>
                         <td>
-                            @item.id
-                        </td>
-                        <td>
                             @item.name
                         </td>
                         <td>
                             @item.description
                         </td>
                         <td>
-                            <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.id">Edit</a>
+                            <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.id">Edit <i class="bi bi-pencil"></i></a>
                             @*Creating form to execute HTTPPOST Request*@
                             <form asp-action="Delete" asp-route-id="@item.id" class="d-inline">
-                                <button type="button" class="deleteBtn btn btn-danger">Delete</button>
+                                <button type="button" class="deleteBtn btn btn-danger">Delete <i class="bi bi-trash"></i></button>
                             </form>
                         </td>
                     </tr>
