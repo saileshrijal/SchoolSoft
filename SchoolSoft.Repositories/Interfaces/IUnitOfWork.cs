@@ -11,6 +11,8 @@ namespace SchoolSoft.Repositories.Interfaces
         IFacultyRepository Faculty { get; }
         IProgramRepository Program { get; }
 
+        ISemesterRepository Semester { get; }
+
         Task SaveAsync();
     }
 }

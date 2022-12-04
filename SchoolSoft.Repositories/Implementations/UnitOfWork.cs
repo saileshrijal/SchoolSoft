@@ -12,6 +12,7 @@ namespace SchoolSoft.Repositories.Implementations
     {
         public IFacultyRepository Faculty { get; private set; }
         public IProgramRepository Program { get; private set; }
+        public ISemesterRepository Semester { get; private set; }
         private readonly ApplicationDbContext _context;
 
         public UnitOfWork(ApplicationDbContext context)
@@ -19,6 +20,7 @@ namespace SchoolSoft.Repositories.Implementations
             _context = context;
             Faculty = new FacultyRepository(context);
             Program = new ProgramRepository(context);
+            Semester = new SemesterRepository(context); 
         }
 
         public async Task SaveAsync()

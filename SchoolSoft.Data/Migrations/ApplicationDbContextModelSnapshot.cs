@@ -263,6 +263,46 @@ namespace SchoolSoft.Data.Migrations
                     b.ToTable("Programs");
                 });
 
+            modelBuilder.Entity("SchoolSoft.Models.ProgramSemester", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ProgramId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SemesterId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProgramId");
+
+                    b.HasIndex("SemesterId");
+
+                    b.ToTable("ProgramSemesters");
+                });
+
+            modelBuilder.Entity("SchoolSoft.Models.Semester", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Semesters");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -325,9 +365,38 @@ namespace SchoolSoft.Data.Migrations
                     b.Navigation("Faculty");
                 });
 
+            modelBuilder.Entity("SchoolSoft.Models.ProgramSemester", b =>
+                {
+                    b.HasOne("SchoolSoft.Models.Program", "Program")
+                        .WithMany("ProgramSemesters")
+                        .HasForeignKey("ProgramId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolSoft.Models.Semester", "Semester")
+                        .WithMany("ProgramSemesters")
+                        .HasForeignKey("SemesterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Program");
+
+                    b.Navigation("Semester");
+                });
+
             modelBuilder.Entity("SchoolSoft.Models.Faculty", b =>
                 {
                     b.Navigation("Programs");
+                });
+
+            modelBuilder.Entity("SchoolSoft.Models.Program", b =>
+                {
+                    b.Navigation("ProgramSemesters");
+                });
+
+            modelBuilder.Entity("SchoolSoft.Models.Semester", b =>
+                {
+                    b.Navigation("ProgramSemesters");
                 });
 #pragma warning restore 612, 618
         }
