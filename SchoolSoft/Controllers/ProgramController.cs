@@ -12,12 +12,17 @@ namespace SchoolSoft.Controllers
         private readonly IProgramService _programService;
         private readonly INotyfService _notifyService;
         private readonly IFacultyService _facultyService;
+        private readonly ISemesterService _semesterService;
 
-        public ProgramController(IProgramService programService, INotyfService notifyService, IFacultyService facultyService)
+        public ProgramController(IProgramService programService, 
+                                INotyfService notifyService, 
+                                IFacultyService facultyService,
+                                ISemesterService semesterService)
         {
             _programService = programService;
             _notifyService = notifyService;
             _facultyService = facultyService;
+            _semesterService = semesterService;
         }
 
         public async Task<IActionResult> Index()
@@ -34,13 +39,20 @@ namespace SchoolSoft.Controllers
             return View(programsVM);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             var vm = new ProgramViewModel();
             try
             {
                 var facultiesVM = await _facultyService.GetAllFaculties();
+                var semestersVM = await _semesterService.GetAllSemester();
                 vm.Faculties = facultiesVM.Select(x => new SelectListItem()
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name
+                }).ToList();
+                vm.Semesters = semestersVM.Select(x => new SelectListItem()
                 {
                     Value = x.Id.ToString(),
                     Text = x.Name
@@ -85,7 +97,7 @@ namespace SchoolSoft.Controllers
                 }).ToList();
                 if (programVM.Id == 0)
                 {
-                    _notifyService.Error($"Faculty of ID: {id} not found");
+                    _notifyService.Error($"Program of ID: {id} not found");
                     return RedirectToAction(nameof(Index));
                 }
             }
@@ -128,7 +140,7 @@ namespace SchoolSoft.Controllers
                 _notifyService.Error(ex.Message);
             }
 
-            return RedirectToAction("index");
+            return RedirectToAction(nameof(Index));
         }
     }
 }

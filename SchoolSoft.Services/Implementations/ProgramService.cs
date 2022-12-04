@@ -21,7 +21,22 @@ namespace SchoolSoft.Services.Implementations
 
         public async Task CreateProgram(ProgramViewModel vm)
         {
+            //getting selected semesters id
+            var selectedSemetersId = vm.Semesters?.Where(x => x.Selected).Select(x => x.Value).Select(int.Parse).ToList();
+
             var programModel = new ProgramViewModel().ConvertViewModel(vm);
+            programModel.ProgramSemesters = new List<ProgramSemester>();
+
+            foreach(var semesterId in selectedSemetersId)
+            {
+                //adding semester and program to programsemester table
+                programModel.ProgramSemesters.Add(new ProgramSemester()
+                {
+                    Program = programModel,
+                    SemesterId = semesterId
+                });
+            }
+
             await _unitOfWork.Program.Create(programModel);
             await _unitOfWork.SaveAsync();
         }
