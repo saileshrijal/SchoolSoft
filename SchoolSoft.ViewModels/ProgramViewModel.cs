@@ -19,7 +19,6 @@ namespace SchoolSoft.ViewModels
         public int FacultyId { get; set; }
         public Faculty? Faculty { get; set; }
         public List<SelectListItem>? Faculties { get; set; }
-
         public ProgramViewModel()
         {
         }
