@@ -6,61 +6,63 @@ using SchoolSoft.ViewModels;
 
 namespace SchoolSoft.Controllers
 {
-    public class SemesterController : Controller
+    public class BatchController : Controller
     {
-        private readonly ISemesterService _semesterService;
-        private readonly IProgramService _programService;
+        private readonly IBatchService _batchService;
         private readonly INotyfService _notifyService;
-        public SemesterController(ISemesterService semesterService, IProgramService programService, INotyfService notifyService)
+
+        public BatchController(IBatchService batchService, INotyfService notifyService)
         {
-            _semesterService = semesterService;
-            _programService = programService;
+            _batchService = batchService;
             _notifyService = notifyService;
         }
+
         public async Task<IActionResult> Index()
         {
-            var semesterVm = new List<SemesterViewModel>();
+            var batchesVm = new List<BatchViewModel>();
             try
             {
-                semesterVm = await _semesterService.GetAllSemester();
+                batchesVm = await _batchService.GetAllBatches();
             }
             catch (Exception ex)
             {
                 _notifyService.Error(ex.Message);
             }
-            return View(semesterVm);
+            return View(batchesVm);
         }
+
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(SemesterViewModel vm)
+        public async Task<IActionResult> Create(BatchViewModel vm)
         {
             if (!ModelState.IsValid) { return View(vm); }
-            try {
-                await _semesterService.CreateSemester(vm);
-                _notifyService.Success("Semester Created Successfully");
+            try
+            {
+                await _batchService.CreateBatch(vm);
+                _notifyService.Success("Batch Created Successfully");
                 return RedirectToAction("index");
             }
             catch (Exception ex)
             {
                 _notifyService.Error(ex.Message);
+                return View(vm);
             }
-            return View(vm);    
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var semesterVM = new SemesterViewModel();
+            var batchVM = new BatchViewModel();
             try
             {
-                semesterVM = await _semesterService.GetSemester(id);
-                if (semesterVM.Id == 0)
+                batchVM = await _batchService.GetBatch(id);
+                if (batchVM.Id == 0)
                 {
-                    _notifyService.Error($"Semester of ID: {id} not found");
+                    _notifyService.Error($"Batch of ID: {id} not found");
                     return RedirectToAction(nameof(Index));
                 }
             }
@@ -69,17 +71,17 @@ namespace SchoolSoft.Controllers
                 _notifyService.Error(ex.Message);
             }
 
-            return View(semesterVM);
+            return View(batchVM);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(SemesterViewModel vm)
+        public async Task<IActionResult> Edit(BatchViewModel vm)
         {
             if (!ModelState.IsValid) { return View(vm); }
             try
             {
-                await _semesterService.UpdateSemester(vm);
-                _notifyService.Success("Semester Updated Successfully");
+                await _batchService.UpdateBatch(vm);
+                _notifyService.Success("Batch Updated Successfully");
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -95,8 +97,8 @@ namespace SchoolSoft.Controllers
         {
             try
             {
-                await _semesterService.DeleteSemester(id);
-                _notifyService.Success("Semester Deleted Successfully");
+                await _batchService.DeleteBatch(id);
+                _notifyService.Success("Batch Deleted Successfully");
             }
             catch (Exception ex)
             {

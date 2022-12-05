@@ -12,8 +12,8 @@ using SchoolSoft.Data;
 namespace SchoolSoft.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221204115328_initialMigration")]
-    partial class initialMigration
+    [Migration("20221205143132_initial-migration")]
+    partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -220,6 +220,29 @@ namespace SchoolSoft.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("SchoolSoft.Models.Batch", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Batches");
                 });
 
             modelBuilder.Entity("SchoolSoft.Models.Faculty", b =>

@@ -21,6 +21,14 @@ namespace SchoolSoft.Services.Implementations
             await _unitOfWork.SaveAsync();
         }
 
+        public async Task UpdateSemester(SemesterViewModel vm)
+        {
+            var semesterModel = new SemesterViewModel().ConvertViewModel(vm);
+            var existingSemester = await _unitOfWork.Semester.GetBy(x => x.Id == semesterModel.Id);
+            existingSemester.Name = vm.Name;
+            await _unitOfWork.SaveAsync();
+        }
+
         public async Task<List<SemesterViewModel>> GetAllSemester()
         {
             var semesterModel = await _unitOfWork.Semester.GetAll();
@@ -31,6 +39,23 @@ namespace SchoolSoft.Services.Implementations
         private List<SemesterViewModel> ConvertModelListToViewModelList(List<Semester> semesterModel)
         {
             return semesterModel.Select(x => new SemesterViewModel(x)).ToList();
+        }
+
+        public async Task<SemesterViewModel> GetSemester(int id)
+        {
+            var semesterVM = new SemesterViewModel();//create null object
+            var semesterModel = await _unitOfWork.Semester.GetBy(x => x.Id == id);
+            if (semesterModel != null)
+            {
+                semesterVM = new SemesterViewModel(semesterModel);
+            }
+            return semesterVM;
+        }
+
+        public async Task DeleteSemester (int id)
+        {
+            await _unitOfWork.Semester.Delete(id);
+            await _unitOfWork.SaveAsync();
         }
     }
 }
