@@ -236,7 +236,7 @@ namespace SchoolSoft.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Faculties");
+                    b.ToTable("Faculties", (string)null);
                 });
 
             modelBuilder.Entity("SchoolSoft.Models.Program", b =>
@@ -260,7 +260,7 @@ namespace SchoolSoft.Data.Migrations
 
                     b.HasIndex("FacultyId");
 
-                    b.ToTable("Programs");
+                    b.ToTable("Programs", (string)null);
                 });
 
             modelBuilder.Entity("SchoolSoft.Models.ProgramSemester", b =>
@@ -283,7 +283,7 @@ namespace SchoolSoft.Data.Migrations
 
                     b.HasIndex("SemesterId");
 
-                    b.ToTable("ProgramSemesters");
+                    b.ToTable("ProgramSemesters", (string)null);
                 });
 
             modelBuilder.Entity("SchoolSoft.Models.Semester", b =>
@@ -300,7 +300,7 @@ namespace SchoolSoft.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Semesters");
+                    b.ToTable("Semesters", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

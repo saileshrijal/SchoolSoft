@@ -45,5 +45,9 @@ namespace SchoolSoft.Repositories.Implementations
             return await entities.FirstOrDefaultAsync(predicate);
         }
 
+        public async Task<List<T>> GetAllBy(Expression<Func<T, bool>> predicate)
+        {
+            return await entities.Where(predicate).ToListAsync();
+        }
     }
 }

@@ -26,6 +26,17 @@
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <div class="mb-3">
+        <label>Choose Semesters</label>
+
+        @for (int i = 0; i < Model.Semesters.Count; i++)
+        {
+            <input type="hidden" asp-for="Semesters[i].Value">
+            <span class="m-2 text-capitalize">
+                <input asp-for="Semesters[i].Selected"> @Model.Semesters[i].Text
+            </span>
+        }
+    </div>
+    <div class="mb-3">
         <input type="submit" class="form-control btn btn-primary" value="Edit" />
     </div>
 </form>
