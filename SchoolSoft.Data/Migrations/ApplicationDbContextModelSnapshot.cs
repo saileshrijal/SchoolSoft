@@ -220,6 +220,29 @@ namespace SchoolSoft.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("SchoolSoft.Models.Batch", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Batches");
+                });
+
             modelBuilder.Entity("SchoolSoft.Models.Faculty", b =>
                 {
                     b.Property<int>("Id")
@@ -236,7 +259,7 @@ namespace SchoolSoft.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Faculties", (string)null);
+                    b.ToTable("Faculties");
                 });
 
             modelBuilder.Entity("SchoolSoft.Models.Program", b =>
@@ -260,7 +283,7 @@ namespace SchoolSoft.Data.Migrations
 
                     b.HasIndex("FacultyId");
 
-                    b.ToTable("Programs", (string)null);
+                    b.ToTable("Programs");
                 });
 
             modelBuilder.Entity("SchoolSoft.Models.ProgramSemester", b =>
@@ -283,7 +306,7 @@ namespace SchoolSoft.Data.Migrations
 
                     b.HasIndex("SemesterId");
 
-                    b.ToTable("ProgramSemesters", (string)null);
+                    b.ToTable("ProgramSemesters");
                 });
 
             modelBuilder.Entity("SchoolSoft.Models.Semester", b =>
@@ -300,7 +323,7 @@ namespace SchoolSoft.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Semesters", (string)null);
+                    b.ToTable("Semesters");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

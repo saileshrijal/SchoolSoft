@@ -12,7 +12,7 @@ namespace SchoolSoft.Repositories.Interfaces
         IProgramRepository Program { get; }
         ISemesterRepository Semester { get; }
         IProgramSemesterRepository ProgramSemester { get; }
-
+        IBatchRepository Batch { get; }
         Task SaveAsync();
     }
 }

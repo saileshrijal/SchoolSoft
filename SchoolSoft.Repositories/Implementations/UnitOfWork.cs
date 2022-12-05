@@ -14,6 +14,7 @@ namespace SchoolSoft.Repositories.Implementations
         public IProgramRepository Program { get; private set; }
         public ISemesterRepository Semester { get; private set; }
         public IProgramSemesterRepository ProgramSemester { get; private set; }
+        public IBatchRepository Batch { get; private set; }
     
         private readonly ApplicationDbContext _context;
 
@@ -24,6 +25,7 @@ namespace SchoolSoft.Repositories.Implementations
             Program = new ProgramRepository(context);
             Semester = new SemesterRepository(context);
             ProgramSemester = new ProgramSemesterRepository(context);
+            Batch = new BatchRepository(context);
         }
 
         public async Task SaveAsync()

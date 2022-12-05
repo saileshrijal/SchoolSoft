@@ -12,5 +12,6 @@ namespace SchoolSoft.Data
         public DbSet<Program>? Programs { get; set; }
         public DbSet<Semester>? Semesters { get; set; }
         public DbSet<ProgramSemester>? ProgramSemesters { get; set; }
+        public DbSet<Batch>? Batches { get; set; }
     }
 }
