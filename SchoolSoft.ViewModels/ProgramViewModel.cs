@@ -20,6 +20,7 @@ namespace SchoolSoft.ViewModels
         public Faculty? Faculty { get; set; }
         public List<SelectListItem>? Faculties { get; set; }
         public List<SelectListItem>? Semesters { get; set; }
+        public List<ProgramSemester>? ProgramSemesters { get; set; }
         public ProgramViewModel()
         {
         }
@@ -31,6 +32,7 @@ namespace SchoolSoft.ViewModels
             Description = model.Description;
             FacultyId = model.FacultyId;
             Faculty = model.Faculty;
+            ProgramSemesters = model.ProgramSemesters;
         }
 
         public Program ConvertViewModel(ProgramViewModel vm)
@@ -42,6 +44,7 @@ namespace SchoolSoft.ViewModels
                 Description = vm.Description,
                 FacultyId = vm.FacultyId,
                 Faculty = vm.Faculty,
+                ProgramSemesters = vm.ProgramSemesters
             };
         }
     }

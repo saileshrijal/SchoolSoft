@@ -26,6 +26,9 @@
                         Faculty
                     </th>
                     <th>
+                        Semesters
+                    </th>
+                    <th>
                         Action
                     </th>
                 </tr>
@@ -42,6 +45,12 @@
                         </td>
                         <td>
                             @item.Faculty.Name
+                        </td>
+                        <td>
+                            @foreach (var programSemester in item.ProgramSemesters)
+                            {
+                                <p class="d-inline fw-bold"><span class="text-primary">@programSemester.Semester.Name</span> |</p>
+                            }
                         </td>
                         <td>
                             <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit <i class="bi bi-pencil"></i></a>

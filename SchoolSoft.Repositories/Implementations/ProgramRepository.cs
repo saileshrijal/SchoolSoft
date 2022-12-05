@@ -18,7 +18,7 @@ namespace SchoolSoft.Repositories.Implementations
 
         public override async Task<List<Program>> GetAll()
         {
-            return await _context.Programs.Include(x=>x.Faculty).ToListAsync();
+            return await _context.Programs.Include(x=>x.Faculty).Include(x=>x.ProgramSemesters).ThenInclude(x=>x.Semester).ToListAsync();
         }
     }
 }

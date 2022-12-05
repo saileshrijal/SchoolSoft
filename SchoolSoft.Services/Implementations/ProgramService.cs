@@ -91,8 +91,6 @@ namespace SchoolSoft.Services.Implementations
 
         public async Task UpdateProgram(ProgramViewModel vm)
         {
-            //var programModel = new ProgramViewModel().ConvertViewModel(vm);
-
             var existingProgram = await _unitOfWork.Program.GetBy(x => x.Id == vm.Id);
             existingProgram.Name = vm.Name;
             existingProgram.Description = vm.Description;
