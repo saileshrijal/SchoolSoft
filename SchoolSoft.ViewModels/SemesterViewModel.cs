@@ -8,7 +8,7 @@ namespace SchoolSoft.ViewModels
     public class SemesterViewModel
     {
         [Required]
-        public int Id { get; set; }
+        public int Id { get; set; } 
         [Required]
         public string? Name { get; set; }
         public List<ProgramSemester>? ProgramSemesters { get; set; }

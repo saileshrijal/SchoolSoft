@@ -1,6 +1,6 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using SchoolSoft.Services.Implementations;
 using SchoolSoft.Services.Interfaces;
 using SchoolSoft.ViewModels;
 
@@ -49,6 +49,61 @@ namespace SchoolSoft.Controllers
                 _notifyService.Error(ex.Message);
             }
             return View(vm);    
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var semesterVM = new SemesterViewModel();
+            try
+            {
+                semesterVM = await _semesterService.GetSemester(id);
+                if (semesterVM.Id == 0)
+                {
+                    _notifyService.Error($"Semester of ID: {id} not found");
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (Exception ex)
+            {
+                _notifyService.Error(ex.Message);
+            }
+
+            return View(semesterVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(SemesterViewModel vm)
+        {
+            if (!ModelState.IsValid) { return View(vm); }
+            try
+            {
+                await _semesterService.UpdateSemester(vm);
+                _notifyService.Success("Semester Updated Successfully");
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                _notifyService.Error(ex.Message);
+                return View(vm);
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _semesterService.DeleteSemester(id);
+                _notifyService.Success("Semester Deleted Successfully");
+            }
+            catch (Exception ex)
+            {
+                _notifyService.Error(ex.Message);
+            }
+
+            return RedirectToAction("index");
         }
     }
 }

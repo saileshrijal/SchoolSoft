@@ -1,0 +1,25 @@
+﻿@model SemesterViewModel
+
+@{
+    ViewData["Title"] = "Edit Semester";
+}
+
+<h2>Edit Semester</h2>
+<hr>
+<hr />
+<form method="post" action="Edit">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label for="" class="form-label">Faculty Name</label>
+        <input type="text" class="form-control" asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <input type="submit" class="form-control btn btn-primary" value="Edit" />
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+notep
