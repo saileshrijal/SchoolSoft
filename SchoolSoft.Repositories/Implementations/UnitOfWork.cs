@@ -1,10 +1,5 @@
 ﻿using SchoolSoft.Data;
 using SchoolSoft.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolSoft.Repositories.Implementations
 {
@@ -15,6 +10,7 @@ namespace SchoolSoft.Repositories.Implementations
         public ISemesterRepository Semester { get; private set; }
         public IProgramSemesterRepository ProgramSemester { get; private set; }
         public IBatchRepository Batch { get; private set; }
+        public IStudentRepository Student { get; private set; }
     
         private readonly ApplicationDbContext _context;
 
@@ -26,6 +22,7 @@ namespace SchoolSoft.Repositories.Implementations
             Semester = new SemesterRepository(context);
             ProgramSemester = new ProgramSemesterRepository(context);
             Batch = new BatchRepository(context);
+            Student = new StudentRepository(context);
         }
 
         public async Task SaveAsync()
