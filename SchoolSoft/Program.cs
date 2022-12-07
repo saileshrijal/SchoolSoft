@@ -27,6 +27,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddScoped<IProgramService, ProgramService>();
     builder.Services.AddScoped<ISemesterService, SemesterService>();
     builder.Services.AddScoped<IBatchService, BatchService>();
+    builder.Services.AddScoped<IStudentService, StudentService>();
 }
 
 var app = builder.Build();
