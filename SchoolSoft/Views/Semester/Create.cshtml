@@ -1,22 +1,36 @@
 ﻿@model SemesterViewModel
-
 @{
     ViewData["Title"] = "Create Semester";
 }
 
-<h2>Create Semester</h2>
-<hr />
-<form asp-action="Create" method="post">
-    <div class="mb-3">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <input type="submit" class="form-control btn btn-primary" value="Create" />
-    </div>
-</form>
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">
+        <a asp-action="Index" class="btn btn-primary"><i class="bi bi-plus-circle-fill"></i> Go Back</a>
+    </h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Add Semester</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <div class="mb-3">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" class="form-control btn btn-primary" value="Create" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
 }
