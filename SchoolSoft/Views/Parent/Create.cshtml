@@ -13,7 +13,12 @@
     </div>
     <div class="mb-3">
         <label asp-for="Gender"></label>
-        <input asp-for="Gender" class="form-control" />
+        <select asp-for="Gender" class="form-select">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Others">Others</option>
+        </select>
         <span asp-validation-for="Gender" class="text-danger"></span>
     </div>
     <div class="mb-3">
@@ -25,11 +30,6 @@
         <label asp-for="Email"></label>
         <input asp-for="Email" class="form-control" />
         <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="CreatedAt"></label>
-        <input asp-for="CreatedAt" type="date" class="form-control" />
-        <span asp-validation-for="CreatedAt" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <input type="submit" class="form-control btn btn-primary" value="Create" />

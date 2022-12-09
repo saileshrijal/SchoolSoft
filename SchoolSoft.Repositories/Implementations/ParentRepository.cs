@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SchoolSoft.Repositories.Implementations
 {
-    public class ParentRepository:GenericRepository<Parent>, IParentRepository
+    public class ParentRepository : GenericRepository<Parent>, IParentRepository
     {
         public ParentRepository(ApplicationDbContext options):base(options)
         {

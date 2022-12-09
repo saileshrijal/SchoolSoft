@@ -17,6 +17,6 @@ namespace SchoolSoft.Models
         [Required]
         public string? ConctactNumber { get; set; }
         public string? Email { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

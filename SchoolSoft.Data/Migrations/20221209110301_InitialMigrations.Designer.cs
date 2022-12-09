@@ -12,8 +12,8 @@ using SchoolSoft.Data;
 namespace SchoolSoft.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221209092132_parent-model-created")]
-    partial class parentmodelcreated
+    [Migration("20221209110301_InitialMigrations")]
+    partial class InitialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
