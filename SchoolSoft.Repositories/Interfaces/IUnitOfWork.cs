@@ -14,6 +14,7 @@ namespace SchoolSoft.Repositories.Interfaces
         IProgramSemesterRepository ProgramSemester { get; }
         IBatchRepository Batch { get; }
         IStudentRepository Student { get; }
+        IParentRepository Parent { get; }
         Task SaveAsync();
     }
 }
