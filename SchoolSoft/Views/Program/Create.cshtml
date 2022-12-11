@@ -3,46 +3,62 @@
     ViewData["Title"] = "Create Program";
 }
 
-<h2>Create Faculty</h2>
-<hr />
-<form asp-action="Create" method="post">
-    <div class="mb-3">
-        <label>Faculty</label>
-        <select asp-for="FacultyId" class="form-control" asp-items="@Model.Faculties" >
-            <option value="">Select Faculty</option>
-        </select>
-        <span asp-validation-for="FacultyId" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control" rows="5"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label>Choose Semesters</label>
 
-        @for (int i = 0; i < Model.Semesters.Count; i++)
-        {
-            <input type="hidden" asp-for="Semesters[i].Value">
-            <span class="m-2 text-capitalize">
-                <input asp-for="Semesters[i].Selected"> @Model.Semesters[i].Text
-            </span>
-        }
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-       @* <select class="form-control" asp-for="Semesters" asp-items="@Model.Semesters">
-            <option value="">Select Semester</option>
-        </select>*@
-    </div>
-    <div class="mb-3">
-        <input type="submit" class="form-control btn btn-primary" value="Create" />
-    </div>
-</form>
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">
+        <a asp-action="Index" class="btn btn-primary"><i class="bi bi-plus-circle-fill"></i> Go Back</a>
+    </h1>
 
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Add Program Details</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <div class="mb-3">
+                    <label>Faculty</label>
+                    <select asp-for="FacultyId" class="form-control" asp-items="@Model.Faculties">
+                        <option value="">Select Faculty</option>
+                    </select>
+                    <span asp-validation-for="FacultyId" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label>Choose Semesters</label>
+
+                    @for (int i = 0; i < Model.Semesters.Count; i++)
+                    {
+                        <input type="hidden" asp-for="Semesters[i].Value">
+                        <span class="m-2 text-capitalize">
+                            <input asp-for="Semesters[i].Selected"> @Model.Semesters[i].Text
+                        </span>
+                    }
+
+                    @* <select class="form-control" asp-for="Semesters" asp-items="@Model.Semesters">
+                    <option value="">Select Semester</option>
+                    </select>*@
+                </div>
+                <div class="mb-3">
+                    <input type="submit" class="form-control btn btn-primary" value="Create" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
 @section Scripts{
-    <partial name="_ValidationScriptsPartial"/>
+    <partial name="_ValidationScriptsPartial" />
 }
