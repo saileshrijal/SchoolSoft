@@ -18,7 +18,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Edit Faculty</h6>
         </div>
         <div class="card-body">
-            <form asp-action="Create" method="post">
+            <form asp-action="Edit" method="post">
                 <input type="hidden" asp-for="Id"/>
                 <div class="mb-3">
                     <label asp-for="Name"></label>
@@ -31,7 +31,7 @@
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <input type="submit" class="form-control btn btn-primary" value="Create" />
+                    <input type="submit" class="form-control btn btn-primary" value="Save" />
                 </div>
             </form>
         </div>
