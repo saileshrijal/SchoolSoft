@@ -17,23 +17,37 @@
             <h6 class="m-0 font-weight-bold text-primary">Edit Parent</h6>
         </div>
         <div class="card-body">
-            <form asp-action="Edit" method="post">
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
                 <input asp-for="Id" type="hidden" />
                 <input asp-for="CreatedAt" type="hidden" />
-                <div class="mb-3">
-                    <label asp-for="Name"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Gender"></label>
-                    <select asp-for="Gender" class="form-select">
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Others">Others</option>
-                    </select>
-                    <span asp-validation-for="Gender" class="text-danger"></span>
+                <input asp-for="PhotoUrl" type="hidden" />
+
+                <div class="row">
+                    <div class="col-10">
+                        <div class="mb-3">
+                            <label asp-for="Name"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Gender"></label>
+                            <select asp-for="Gender" class="custom-select">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        @if(Model.PhotoUrl==null){
+                            <img class="img-fluid" src="~/Images/default.png" id="thumbnailPic" />
+                        }
+                        else{
+                            <img class="img-fluid" src="~/Images/Parents/@Model.PhotoUrl" id="thumbnailPic" />
+                        }
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label asp-for="ConctactNumber"></label>
@@ -46,6 +60,19 @@
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
+                    <label asp-for="Photo"></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" asp-for="Photo" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Photo" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
                     <input type="submit" class="form-control btn btn-primary" value="Save" />
                 </div>
             </form>
@@ -56,4 +83,12 @@
 <!-- /.container-fluid -->
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            document.getElementById('thumbnailPic').src = window.URL.createObjectURL(this.files[0])
+        });
+    </script>
 }

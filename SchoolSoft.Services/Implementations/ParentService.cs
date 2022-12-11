@@ -30,6 +30,7 @@ namespace SchoolSoft.Services.Implementations
             existingParent.Gender = vm.Gender;
             existingParent.ConctactNumber = vm.ConctactNumber;
             existingParent.Email = vm.Email;
+            existingParent.PhotoUrl = vm.PhotoUrl;
             await _unitOfWork.SaveAsync();
         }
         public async Task<List<ParentViewModel>> GetAllParents()

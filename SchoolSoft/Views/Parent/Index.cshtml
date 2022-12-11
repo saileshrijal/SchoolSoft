@@ -24,6 +24,9 @@
                     <thead>
                         <tr>
                             <th>
+                                Photo
+                            </th>
+                            <th>
                                 Parent Name
                             </th>
                             <th>
@@ -47,6 +50,16 @@
                         @foreach (var item in Model)
                         {
                             <tr>
+                                <td>
+                                    @if (item.PhotoUrl == null)
+                                    {
+                                        <img height="40" width="40" src="~/Images/default.png" style="object-fit:cover">
+                                    }
+                                    else
+                                    {
+                                        <img height="40" width="40" src="~/Images/Parents/@item.PhotoUrl" style="object-fit:cover">
+                                    }
+                                </td>
                                 <td>
                                     @item.Name
                                 </td>

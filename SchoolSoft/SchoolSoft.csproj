@@ -21,7 +21,12 @@
     <ProjectReference Include="..\SchoolSoft.Models\SchoolSoft.Models.csproj" />
     <ProjectReference Include="..\SchoolSoft.Repositories\SchoolSoft.Repositories.csproj" />
     <ProjectReference Include="..\SchoolSoft.Services\SchoolSoft.Services.csproj" />
+    <ProjectReference Include="..\SchoolSoft.Utilities\SchoolSoft.Utilities.csproj" />
     <ProjectReference Include="..\SchoolSoft.ViewModels\SchoolSoft.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Students\" />
   </ItemGroup>
 
 </Project>

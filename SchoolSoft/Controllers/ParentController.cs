@@ -1,6 +1,7 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using SchoolSoft.Services.Interfaces;
+using SchoolSoft.Utilities;
 using SchoolSoft.ViewModels;
 
 namespace SchoolSoft.Controllers
@@ -9,11 +10,13 @@ namespace SchoolSoft.Controllers
     {
         private readonly IParentService _parentService;
         private readonly INotyfService _notifyService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ParentController(IParentService parentService, INotyfService notifyService)
+        public ParentController(IParentService parentService, INotyfService notifyService, IWebHostEnvironment webHostEnvironment)
         {
             _parentService = parentService;
             _notifyService = notifyService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task<IActionResult> Index()
@@ -41,6 +44,10 @@ namespace SchoolSoft.Controllers
             if (!ModelState.IsValid) { return View(vm); }
             try
             {
+                if(vm.Photo != null)
+                {
+                    vm.PhotoUrl = FileHelper.UploadImage(_webHostEnvironment, vm.Photo, "Images/Parents");
+                }
                 await _parentService.CreateParent(vm);
                 _notifyService.Success("Parent Created Successfully");
                 return RedirectToAction("index");
@@ -79,6 +86,10 @@ namespace SchoolSoft.Controllers
             if (!ModelState.IsValid) { return View(vm); }
             try
             {
+                if (vm.Photo != null)
+                {
+                    vm.PhotoUrl = FileHelper.UploadImage(_webHostEnvironment, vm.Photo, "Images/Parents");
+                }
                 await _parentService.UpdateParent(vm);
                 _notifyService.Success("Parent Updated Successfully");
                 return RedirectToAction(nameof(Index));
